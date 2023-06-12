@@ -4,39 +4,53 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began)
+            {
+                rb.AddForce(Vector3.left);
+            }
+
+            if (touch.phase == TouchPhase.Ended)
+            {
+                rb.AddForce(Vector3.forward);
+            }
+        }
     }
     
-    void Move(float x_input, float z_input)
+    void Move(float xInput, float zInput)
     {
-        if (x_input == 0.0f && z_input == 0.0f) return;
+        if (xInput == 0.0f && zInput == 0.0f) return;
         
         // move
-        Vector3 input_vector = new Vector3(x_input, 0, z_input);
-        Vector3 current_position = transform.position;
-        Vector3 target_vector = current_position + input_vector.normalized;
-        float step = CalcStep(input_vector);
-        transform.position = Vector3.MoveTowards(current_position, target_vector, step);
+        Vector3 inputVector = new Vector3(xInput, 0, zInput);
+        Vector3 currentPosition = transform.position;
+        Vector3 targetVector = currentPosition + inputVector.normalized;
+        float step = CalcStep(inputVector);
+        transform.position = Vector3.MoveTowards(currentPosition, targetVector, step);
         
         // rotate
-        Vector3 inputDirection = input_vector;
+        Vector3 inputDirection = inputVector;
         Quaternion nextRotation = Quaternion.LookRotation(inputDirection);
         transform.rotation = nextRotation;
     }
     
     float CalcStep(Vector3 input)
     {
-        float speed_param = 5.0f;
-        float speed = speed_param * input.magnitude;
+        const float kSpeedParam = 5.0f;
+        float speed = kSpeedParam * input.magnitude;
         return speed * Time.deltaTime;
     }
 }
