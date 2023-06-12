@@ -1,31 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody rb;
+    private Rigidbody _rb;
+
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
+            const float kForce = 100.0f;
             if (touch.phase == TouchPhase.Began)
             {
-                rb.AddForce(Vector3.left);
+                _rb.AddForce(kForce * Vector3.left);
             }
 
             if (touch.phase == TouchPhase.Ended)
             {
-                rb.AddForce(Vector3.forward);
+                _rb.AddForce(kForce * Vector3.forward);
             }
         }
     }

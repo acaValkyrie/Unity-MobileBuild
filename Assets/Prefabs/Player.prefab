@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 1611852898308193541}
   - component: {fileID: 116350361492374492}
   - component: {fileID: 6210690545897913295}
-  - component: {fileID: 562117416398489677}
   - component: {fileID: 2981724176294730972}
+  - component: {fileID: 562117416398489677}
+  - component: {fileID: 1836538579000018752}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -34,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1611852898308193541
 MeshFilter:
@@ -107,18 +108,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &562117416398489677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1047283020553608202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c779fa3deeca31b4eb83407792cf36d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &2981724176294730972
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -146,3 +135,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &562117416398489677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047283020553608202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c779fa3deeca31b4eb83407792cf36d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _arrowPrefab: {fileID: 0}
+--- !u!114 &1836538579000018752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047283020553608202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66063fe90f6424546a1393284c90b231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameObject: {fileID: 0}
