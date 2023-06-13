@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
     }
 
+    private Vector2 _forceStartPosition;
+    private Vector2 _forceEndPosition;
     // Update is called once per frame
     void Update()
     {
@@ -22,15 +24,18 @@ public class PlayerController : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-            const float kForce = 100.0f;
+            const float kForce = 1.0f;
             if (touch.phase == TouchPhase.Began)
             {
-                _rb.AddForce(kForce * Vector3.left);
+                _forceStartPosition = touch.position;
             }
 
             if (touch.phase == TouchPhase.Ended)
             {
-                _rb.AddForce(kForce * Vector3.forward);
+                _forceEndPosition = touch.position;
+
+                Vector3 forceEffective = new Vector3(_forceEndPosition.x - _forceStartPosition.x, 0.0f, _forceEndPosition.y - _forceStartPosition.y);
+                _rb.AddForce(kForce * forceEffective);
             }
         }
     }
