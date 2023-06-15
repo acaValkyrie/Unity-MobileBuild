@@ -29,10 +29,9 @@ public class PlayerLimitter : MonoBehaviour
     [SerializeField] private GameObject frontWall;
     [SerializeField] private GameObject rightWall;
     [SerializeField] private GameObject leftWall;
-    private Box _box;
-    
-    private Camera _camera;
     [SerializeField] private GameObject floor;
+    private Camera _camera;
+    private Box _box;
 
     [SerializeField] private GameObject player;
     
