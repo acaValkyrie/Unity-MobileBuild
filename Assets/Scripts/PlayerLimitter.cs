@@ -38,6 +38,7 @@ public class PlayerLimitter : MonoBehaviour
     // Start is called before the first frame backdate
     void Start()
     {
+        // The camera is looking down on the scene.
         _camera = Camera.main;
         _box = new Box(backWall, frontWall, rightWall, leftWall, _camera.gameObject, floor);
     }
@@ -64,7 +65,13 @@ public class PlayerLimitter : MonoBehaviour
 
     void WrapInRange(ref float num, float min, float max)
     {
-        if (num < min) num = max;
-        if (num > max) num = min;
+        if (num < min)
+        {
+            num = max - (max-num)%(max-min);
+        }
+        if (num > max)
+        {
+            num = min + (num-min)%(max-min);
+        }
     }
 }
